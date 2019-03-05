@@ -11,9 +11,9 @@ import com.gmail.chernii.oleksii.stack.Stack;
  */
 public class Main {
     public static void main(String[] args) {
-        testLinkedList();
+       // testLinkedList();
         testArrayList();
-        testStack();
+        //testStack();
     }
 
     static void testLinkedList() {
@@ -54,7 +54,7 @@ public class Main {
             System.out.print(list.get(i) + " ");
         }
         System.out.println();
-        list.remove(4);
+        list.remove(0);
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
         }

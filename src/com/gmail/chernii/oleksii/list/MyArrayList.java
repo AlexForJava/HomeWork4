@@ -36,6 +36,9 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public void remove(int index) {
+        if (index < 0 || index > size - 1) {
+            throw new IndexOutOfBoundsException("Index must be between 0 and " + (size - 1));
+        }
         if (index == size - 1) {
             elements[index] = null;
             size--;
@@ -53,7 +56,7 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public void clear() {
-        for (int i = size - 1; i > -1; i--) {
+        for (int i = 0; i < size; i++) {
             elements[i] = null;
         }
         size = 0;

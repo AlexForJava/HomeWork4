@@ -6,8 +6,8 @@ package com.gmail.chernii.oleksii.list;
  */
 public class MyLinkedList<E> implements List<E> {
     private int size;
-    private Node<E> first;
-    private Node<E> last;
+    private Node<E> head;
+    private Node<E> tail;
 
     public MyLinkedList() {
     }
@@ -18,11 +18,11 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public void add(E item) {
-        Node<E> tempLast = last;
+        Node<E> tempLast = tail;
         Node<E> newNode = new Node<E>(tempLast, item, null);
-        last = newNode;
+        tail = newNode;
         if (tempLast == null) {
-            first = newNode;
+            head = newNode;
         } else {
             tempLast.next = newNode;
         }
@@ -39,14 +39,14 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public void clear() {
-        for (Node<E> temp = first; temp != null; ) {
+        for (Node<E> temp = head; temp != null; ) {
             Node<E> next = temp.next;
             temp.item = null;
             temp.next = null;
             temp.prev = null;
             temp = next;
         }
-        first = last = null;
+        head = tail = null;
         size = 0;
     }
 
@@ -59,13 +59,13 @@ public class MyLinkedList<E> implements List<E> {
         Node<E> next = node.next;
         Node<E> prev = node.prev;
         if (prev == null) {
-            first = next;
+            head = next;
         } else {
             prev.next = next;
             node.prev = null;
         }
         if (next == null) {
-            last = prev;
+            tail = prev;
         } else {
             next.prev = prev;
             node.next = null;
@@ -76,13 +76,13 @@ public class MyLinkedList<E> implements List<E> {
 
     private Node<E> node(int index) {
         if (index < (size / 2)) {
-            Node<E> temp = this.first;
+            Node<E> temp = this.head;
             for (int i = 0; i < index; i++) {
                 temp = temp.next;
             }
             return temp;
         } else {
-            Node<E> temp = this.last;
+            Node<E> temp = this.tail;
             for (int i = size - 1; i > index; i--) {
                 temp = temp.prev;
             }
