@@ -1,7 +1,5 @@
 package com.gmail.chernii.oleksii.list;
 
-import com.gmail.chernii.oleksii.list.List;
-
 import java.util.Arrays;
 
 /**
@@ -9,21 +7,20 @@ import java.util.Arrays;
  */
 public class MyArrayList<E> implements List<E> {
     private E[] elements;
-    private int length;
+    private static final int DEFAULT_LENGTH = 10;
     private int size;
 
     public MyArrayList() {
-        this.length = 10;
         this.size = 0;
-        elements = (E[]) new Object[this.length];
+        elements = (E[]) new Object[DEFAULT_LENGTH];
     }
 
     @Override
     public void add(E item) {
-        if (size < length - 1) {
+        if (size < DEFAULT_LENGTH - 1) {
             elements[size++] = item;
         } else {
-            length *= 2;
+            int length = elements.length * 2;
             elements = Arrays.copyOf(elements, length);
             elements[size++] = item;
         }
@@ -31,8 +28,8 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public E get(int index) {
-        if (index < 0 || index > size - 1 || size == 0) {
-            return null;
+        if (index < 0 || index > size - 1) {
+            throw new IndexOutOfBoundsException("Index must be between 0 and " + (size - 1));
         }
         return elements[index];
     }

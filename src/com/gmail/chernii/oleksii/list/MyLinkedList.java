@@ -31,7 +31,10 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public E get(int index) {
-        return (!checkIndex(index)) ? node(index).item : null;
+        if (checkIndex(index)) {
+            throw new IndexOutOfBoundsException("Index must be between 0 and " + size());
+        }
+        return node(index).item;
     }
 
     @Override
@@ -50,7 +53,7 @@ public class MyLinkedList<E> implements List<E> {
     @Override
     public void remove(int index) {
         if (checkIndex(index)) {
-            return;
+            throw new IndexOutOfBoundsException("Index must be between 0 and " + size());
         }
         Node<E> node = node(index);
         Node<E> next = node.next;
@@ -74,13 +77,15 @@ public class MyLinkedList<E> implements List<E> {
     private Node<E> node(int index) {
         if (index < (size / 2)) {
             Node<E> temp = this.first;
-            for (int i = 0; i < index; i++)
+            for (int i = 0; i < index; i++) {
                 temp = temp.next;
+            }
             return temp;
         } else {
-            Node<E> temp = last;
-            for (int i = size - 1; i > index; i--)
+            Node<E> temp = this.last;
+            for (int i = size - 1; i > index; i--) {
                 temp = temp.prev;
+            }
             return temp;
         }
     }

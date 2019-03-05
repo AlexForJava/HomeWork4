@@ -11,8 +11,8 @@ import com.gmail.chernii.oleksii.stack.Stack;
  */
 public class Main {
     public static void main(String[] args) {
-        //testLinkedList();
-        //testArrayList();
+        testLinkedList();
+        testArrayList();
         testStack();
     }
 
